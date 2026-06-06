@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "source": "synthetic",
+    "label": "SYNTHETIC DATA — Generated for POC-53 demo purposes",
+    "project_id": "53",
+    "project_title": "Newsletter Distribution Economics",
+    "generated_at": "2026-06-06"
+  },
+  "sidebar": {
+    "title": "Newsletter Distribution Economics",
+    "high_level_metric": {
+      "value": 42.8,
+      "unit": "%",
+      "label": "Avg Open Rate vs Industry",
+      "delta": 4.2,
+      "delta_label": "above benchmark"
+    },
+    "why_this_matters": "Newsletter economics reveal how independent distribution rails are built outside platform algorithms — subscriber ownership, deliverability, and monetization are the real infrastructure levers.",
+    "who_controls_the_rail": "Email service providers (Mailchimp, Beehiiv, Substack), ISPs, and spam filter networks jointly control deliverability; the publisher owns the list but not the inbox."
+  },
+  "cohorts": [
+    {"cohort": "2024-Q1", "month": "2024-01", "subscribers": 1200, "new_subscribers": 1200, "churned": 48, "churn_rate": 4.0, "retained": 1152},
+    {"cohort": "2024-Q1", "month": "2024-02", "subscribers": 1380, "new_subscribers": 180, "churned": 55, "churn_rate": 3.98, "retained": 1325},
+    {"cohort": "2024-Q1", "month": "2024-03", "subscribers": 1520, "new_subscribers": 195, "churned": 55, "churn_rate": 3.62, "retained": 1465},
+    {"cohort": "2024-Q2", "month": "2024-04", "subscribers": 1680, "new_subscribers": 215, "churned": 55, "churn_rate": 3.27, "retained": 1625},
+    {"cohort": "2024-Q2", "month": "2024-05", "subscribers": 1890, "new_subscribers": 245, "churned": 35, "churn_rate": 1.85, "retained": 1855},
+    {"cohort": "2024-Q2", "month": "2024-06", "subscribers": 2100, "new_subscribers": 265, "churned": 55, "churn_rate": 2.62, "retained": 2045},
+    {"cohort": "2024-Q3", "month": "2024-07", "subscribers": 2350, "new_subscribers": 290, "churned": 40, "churn_rate": 1.70, "retained": 2310},
+    {"cohort": "2024-Q3", "month": "2024-08", "subscribers": 2580, "new_subscribers": 280, "churned": 50, "churn_rate": 1.94, "retained": 2530},
+    {"cohort": "2024-Q3", "month": "2024-09", "subscribers": 2820, "new_subscribers": 300, "churned": 60, "churn_rate": 2.13, "retained": 2760},
+    {"cohort": "2024-Q4", "month": "2024-10", "subscribers": 3100, "new_subscribers": 340, "churned": 60, "churn_rate": 1.94, "retained": 3040},
+    {"cohort": "2024-Q4", "month": "2024-11", "subscribers": 3380, "new_subscribers": 350, "churned": 70, "churn_rate": 2.07, "retained": 3310},
+    {"cohort": "2024-Q4", "month": "2024-12", "subscribers": 3650, "new_subscribers": 320, "churned": 50, "churn_rate": 1.37, "retained": 3600},
+    {"cohort": "2025-Q1", "month": "2025-01", "subscribers": 3920, "new_subscribers": 320, "churned": 50, "churn_rate": 1.28, "retained": 3870},
+    {"cohort": "2025-Q1", "month": "2025-02", "subscribers": 4180, "new_subscribers": 310, "churned": 50, "churn_rate": 1.20, "retained": 4130},
+    {"cohort": "2025-Q1", "month": "2025-03", "subscribers": 4450, "new_subscribers": 320, "churned": 50, "churn_rate": 1.12, "retained": 4400}
+  ],
+  "referral_flows": [
+    {"source": "Organic Search", "target": "Direct Subscribe", "value": 420},
+    {"source": "Organic Search", "target": "Referral Link", "value": 180},
+    {"source": "Social Media", "target": "Direct Subscribe", "value": 680},
+    {"source": "Social Media", "target": "Referral Link", "value": 340},
+    {"source": "Referral Link", "target": "Direct Subscribe", "value": 520},
+    {"source": "Referral Link", "target": "Secondary Referral", "value": 210},
+    {"source": "Podcast Mention", "target": "Direct Subscribe", "value": 890},
+    {"source": "Podcast Mention", "target": "Referral Link", "value": 310},
+    {"source": "Cross-Promo", "target": "Direct Subscribe", "value": 560},
+    {"source": "Cross-Promo", "target": "Referral Link", "value": 240},
+    {"source": "Paid Ads", "target": "Direct Subscribe", "value": 380},
+    {"source": "Paid Ads", "target": "Referral Link", "value": 95},
+    {"source": "Secondary Referral", "target": "Direct Subscribe", "value": 175},
+    {"source": "Secondary Referral", "target": "Tertiary Referral", "value": 62}
+  ],
+  "referral_nodes": [
+    {"id": "Organic Search", "category": "acquisition"},
+    {"id": "Social Media", "category": "acquisition"},
+    {"id": "Podcast Mention", "category": "acquisition"},
+    {"id": "Cross-Promo", "category": "acquisition"},
+    {"id": "Paid Ads", "category": "acquisition"},
+    {"id": "Referral Link", "category": "viral"},
+    {"id": "Secondary Referral", "category": "viral"},
+    {"id": "Tertiary Referral", "category": "viral"},
+    {"id": "Direct Subscribe", "category": "conversion"}
+  ],
+  "deliverability": [
+    {"month": "2024-07", "open_rate": 38.2, "bounce_rate": 1.8, "spam_rate": 0.12, "industry_open_rate": 35.0, "industry_bounce_rate": 2.1, "industry_spam_rate": 0.15},
+    {"month": "2024-08", "open_rate": 39.1, "bounce_rate": 1.6, "spam_rate": 0.10, "industry_open_rate": 35.0, "industry_bounce_rate": 2.1, "industry_spam_rate": 0.15},
+    {"month": "2024-09", "open_rate": 40.5, "bounce_rate": 1.5, "spam_rate": 0.09, "industry_open_rate": 35.2, "industry_bounce_rate": 2.0, "industry_spam_rate": 0.14},
+    {"month": "2024-10", "open_rate": 41.2, "bounce_rate": 1.4, "spam_rate": 0.08, "industry_open_rate": 35.2, "industry_bounce_rate": 2.0, "industry_spam_rate": 0.14},
+    {"month": "2024-11", "open_rate": 42.8, "bounce_rate": 1.3, "spam_rate": 0.07, "industry_open_rate": 35.5, "industry_bounce_rate": 1.9, "industry_spam_rate": 0.13},
+    {"month": "2024-12", "open_rate": 44.1, "bounce_rate": 1.2, "spam_rate": 0.06, "industry_open_rate": 35.5, "industry_bounce_rate": 1.9, "industry_spam_rate": 0.13},
+    {"month": "2025-01", "open_rate": 43.5, "bounce_rate": 1.1, "spam_rate": 0.06, "industry_open_rate": 35.8, "industry_bounce_rate": 1.8, "industry_spam_rate": 0.12},
+    {"month": "2025-02", "open_rate": 45.2, "bounce_rate": 1.0, "spam_rate": 0.05, "industry_open_rate": 35.8, "industry_bounce_rate": 1.8, "industry_spam_rate": 0.12},
+    {"month": "2025-03", "open_rate": 46.0, "bounce_rate": 0.9, "spam_rate": 0.05, "industry_open_rate": 36.0, "industry_bounce_rate": 1.7, "industry_spam_rate": 0.11}
+  ],
+  "sponsorship": [
+    {"month": "2024-07", "cpm": 28.5, "slots": 2, "sends": 4, "subscribers": 2350, "revenue_per_send": 133.88, "total_revenue": 535.50},
+    {"month": "2024-08", "cpm": 29.0, "slots": 2, "sends": 4, "subscribers": 2580, "revenue_per_send": 149.22, "total_revenue": 596.88},
+    {"month": "2024-09", "cpm": 30.0, "slots": 3, "sends": 4, "subscribers": 2820, "revenue_per_send": 253.80, "total_revenue": 1015.20},
+    {"month": "2024-10", "cpm": 31.5, "slots": 3, "sends": 4, "subscribers": 3100, "revenue_per_send": 292.95, "total_revenue": 1171.80},
+    {"month": "2024-11", "cpm": 32.0, "slots": 3, "sends": 4, "subscribers": 3380, "revenue_per_send": 324.48, "total_revenue": 1297.92},
+    {"month": "2024-12", "cpm": 35.0, "slots": 4, "sends": 4, "subscribers": 3650, "revenue_per_send": 511.00, "total_revenue": 2044.00},
+    {"month": "2025-01", "cpm": 36.0, "slots": 4, "sends": 4, "subscribers": 3920, "revenue_per_send": 564.48, "total_revenue": 2257.92},
+    {"month": "2025-02", "cpm": 37.5, "slots": 4, "sends": 4, "subscribers": 4180, "revenue_per_send": 627.00, "total_revenue": 2508.00},
+    {"month": "2025-03", "cpm": 38.0, "slots": 5, "sends": 4, "subscribers": 4450, "revenue_per_send": 845.50, "total_revenue": 3382.00}
+  ],
+  "world_bank_context": [
+    {"indicator": "Internet users (% of population)", "country": "United States", "year": 2023, "value": 92.0, "source": "World Bank — IT.NET.USER.ZS"},
+    {"indicator": "Individuals using the Internet (%)", "country": "Global", "year": 2023, "value": 67.0, "source": "World Bank — IT.NET.USER.ZS"},
+    {"indicator": "GDP per capita (current US$)", "country": "United States", "year": 2023, "value": 82340.0, "source": "World Bank — NY.GDP.PCAP.CD"}
+  ],
+  "filters": {
+    "cohorts": ["2024-Q1", "2024-Q2", "2024-Q3", "2024-Q4", "2025-Q1"],
+    "date_range": {"start": "2024-01", "end": "2025-03"},
+    "metrics": ["subscribers", "churn_rate", "open_rate", "revenue"]
+  }
+}
