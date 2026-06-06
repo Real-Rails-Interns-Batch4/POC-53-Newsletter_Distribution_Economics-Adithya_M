@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchDashboard } from "@/lib/api";
 import type { DashboardData, FilterState } from "@/types/dashboard";
+import { DashboardNavbar } from "./DashboardNavbar";
 import { IntelligenceSidebar } from "./IntelligenceSidebar";
 import { MainStage } from "./MainStage";
 
@@ -17,6 +18,12 @@ export function Dashboard() {
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("overview");
+
+  const scrollTo = (id: string) => {
+    setActiveSection(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const loadData = useCallback(async (currentFilters: FilterState) => {
     setIsLoading(true);
@@ -59,20 +66,28 @@ export function Dashboard() {
   }
 
   return (
-    <div className="flex h-screen bg-obsidian">
-      {/* Main Stage — 70% */}
-      <div className="w-[70%] min-w-0 border-r border-border-rail">
-        <MainStage data={data} />
-      </div>
+    <div className="flex h-screen flex-col bg-obsidian">
+      <DashboardNavbar
+        data={data}
+        activeSection={activeSection}
+        onNavigate={scrollTo}
+      />
 
-      {/* Intelligence Sidebar — 30% */}
-      <div className="w-[30%] min-w-0">
-        <IntelligenceSidebar
-          data={data}
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          isLoading={isLoading}
-        />
+      <div className="flex min-h-0 flex-1">
+        {/* Main Stage — 70% */}
+        <div className="w-[70%] min-w-0 border-r border-border-rail">
+          <MainStage data={data} />
+        </div>
+
+        {/* Intelligence Sidebar — 30% */}
+        <div className="w-[30%] min-w-0">
+          <IntelligenceSidebar
+            data={data}
+            filters={filters}
+            onFilterChange={handleFilterChange}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     </div>
   );

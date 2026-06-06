@@ -69,6 +69,28 @@ function enrichClientInsights(data: DashboardData): DashboardData {
   return { ...data, insights };
 }
 
+function normalizeDashboardData(data: DashboardData): DashboardData {
+  const normalized: DashboardData = {
+    ...data,
+    insights: data.insights ?? {},
+    engagement_metrics: data.engagement_metrics ?? [],
+    esp_economics: data.esp_economics ?? [],
+    distribution_channels: data.distribution_channels ?? [],
+    rail_benchmarks: data.rail_benchmarks ?? [],
+    list_health: data.list_health ?? {
+      domain_reputation: 0,
+      spf_status: "unknown",
+      dkim_status: "unknown",
+      dmarc_status: "unknown",
+      warmup_complete: false,
+      inactive_subscribers_pct: 0,
+      list_growth_rate_mom: 0,
+      net_revenue_retention: 0,
+    },
+  };
+  return enrichClientInsights(normalized);
+}
+
 async function fetchMockFallback(): Promise<DashboardData> {
   const res = await fetch("/mock_data.json");
   if (!res.ok) throw new Error("Mock data unavailable");
@@ -88,7 +110,8 @@ export async function fetchDashboard(
       cache: "no-store",
     });
     if (!res.ok) throw new Error(`API error: ${res.status}`);
-    return (await res.json()) as DashboardData;
+    const data = (await res.json()) as DashboardData;
+    return normalizeDashboardData(data);
   } catch {
     const mock = await fetchMockFallback();
     return applyClientFilters(mock, filters);
@@ -114,6 +137,11 @@ function applyClientFilters(
     filtered.sponsorship = data.sponsorship.filter(
       (s) => s.month >= filters.startMonth!
     );
+    if (data.engagement_metrics) {
+      filtered.engagement_metrics = data.engagement_metrics.filter(
+        (e) => e.month >= filters.startMonth!
+      );
+    }
   }
   if (filters.endMonth) {
     filtered.cohorts = filtered.cohorts.filter(
@@ -125,6 +153,11 @@ function applyClientFilters(
     filtered.sponsorship = filtered.sponsorship.filter(
       (s) => s.month <= filters.endMonth!
     );
+    if (filtered.engagement_metrics) {
+      filtered.engagement_metrics = filtered.engagement_metrics.filter(
+        (e) => e.month <= filters.endMonth!
+      );
+    }
   }
 
   return enrichClientInsights(filtered);

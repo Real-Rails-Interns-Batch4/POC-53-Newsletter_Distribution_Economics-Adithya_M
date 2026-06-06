@@ -89,9 +89,49 @@
     {"indicator": "Individuals using the Internet (%)", "country": "Global", "year": 2023, "value": 67.0, "source": "World Bank — IT.NET.USER.ZS"},
     {"indicator": "GDP per capita (current US$)", "country": "United States", "year": 2023, "value": 82340.0, "source": "World Bank — NY.GDP.PCAP.CD"}
   ],
+  "engagement_metrics": [
+    {"month": "2024-07", "click_rate": 4.2, "unsubscribe_rate": 0.18, "avg_read_time_sec": 142, "reply_rate": 0.6, "industry_click_rate": 3.1},
+    {"month": "2024-08", "click_rate": 4.5, "unsubscribe_rate": 0.16, "avg_read_time_sec": 148, "reply_rate": 0.7, "industry_click_rate": 3.1},
+    {"month": "2024-09", "click_rate": 4.8, "unsubscribe_rate": 0.15, "avg_read_time_sec": 155, "reply_rate": 0.8, "industry_click_rate": 3.2},
+    {"month": "2024-10", "click_rate": 5.1, "unsubscribe_rate": 0.14, "avg_read_time_sec": 160, "reply_rate": 0.9, "industry_click_rate": 3.2},
+    {"month": "2024-11", "click_rate": 5.4, "unsubscribe_rate": 0.13, "avg_read_time_sec": 168, "reply_rate": 1.0, "industry_click_rate": 3.3},
+    {"month": "2024-12", "click_rate": 5.8, "unsubscribe_rate": 0.12, "avg_read_time_sec": 175, "reply_rate": 1.1, "industry_click_rate": 3.3},
+    {"month": "2025-01", "click_rate": 5.6, "unsubscribe_rate": 0.11, "avg_read_time_sec": 172, "reply_rate": 1.0, "industry_click_rate": 3.4},
+    {"month": "2025-02", "click_rate": 6.0, "unsubscribe_rate": 0.10, "avg_read_time_sec": 180, "reply_rate": 1.2, "industry_click_rate": 3.4},
+    {"month": "2025-03", "click_rate": 6.3, "unsubscribe_rate": 0.09, "avg_read_time_sec": 188, "reply_rate": 1.3, "industry_click_rate": 3.5}
+  ],
+  "esp_economics": [
+    {"platform": "Beehiiv", "monthly_cost": 99, "cost_per_subscriber": 0.022, "revenue_share_pct": 0, "deliverability_score": 94},
+    {"platform": "Substack", "monthly_cost": 0, "cost_per_subscriber": 0, "revenue_share_pct": 10, "deliverability_score": 91},
+    {"platform": "Mailchimp", "monthly_cost": 350, "cost_per_subscriber": 0.079, "revenue_share_pct": 0, "deliverability_score": 88},
+    {"platform": "ConvertKit", "monthly_cost": 149, "cost_per_subscriber": 0.034, "revenue_share_pct": 0, "deliverability_score": 90}
+  ],
+  "distribution_channels": [
+    {"channel": "Email Inbox", "share_pct": 62, "cac": 2.40, "ltv": 48.50},
+    {"channel": "RSS / Reader", "share_pct": 14, "cac": 0.80, "ltv": 22.00},
+    {"channel": "Web Archive", "share_pct": 11, "cac": 0.50, "ltv": 15.00},
+    {"channel": "Podcast Show Notes", "share_pct": 8, "cac": 3.20, "ltv": 55.00},
+    {"channel": "Social Cross-Post", "share_pct": 5, "cac": 4.10, "ltv": 12.00}
+  ],
+  "list_health": {
+    "domain_reputation": 87,
+    "spf_status": "pass",
+    "dkim_status": "pass",
+    "dmarc_status": "pass",
+    "warmup_complete": true,
+    "inactive_subscribers_pct": 8.4,
+    "list_growth_rate_mom": 6.2,
+    "net_revenue_retention": 112.5
+  },
+  "rail_benchmarks": [
+    {"metric": "List Ownership", "publisher": 100, "platform_algo": 0, "unit": "%"},
+    {"metric": "Revenue per 1K subs", "publisher": 190, "platform_algo": 12, "unit": "$"},
+    {"metric": "Deliverability Control", "publisher": 72, "platform_algo": 45, "unit": "%"},
+    {"metric": "Audience Portability", "publisher": 95, "platform_algo": 15, "unit": "%"}
+  ],
   "filters": {
     "cohorts": ["2024-Q1", "2024-Q2", "2024-Q3", "2024-Q4", "2025-Q1"],
     "date_range": {"start": "2024-01", "end": "2025-03"},
-    "metrics": ["subscribers", "churn_rate", "open_rate", "revenue"]
+    "metrics": ["subscribers", "churn_rate", "open_rate", "revenue", "click_rate", "list_health"]
   }
 }

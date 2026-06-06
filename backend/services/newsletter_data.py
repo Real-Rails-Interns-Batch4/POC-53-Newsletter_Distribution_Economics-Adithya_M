@@ -1,10 +1,10 @@
+import csv
+import io
 import json
 import os
 from pathlib import Path
 from typing import Any
 
-import duckdb
-import pandas as pd
 from dotenv import load_dotenv
 
 from services.world_bank import fetch_world_bank_context
@@ -113,12 +113,13 @@ def filter_data(
 
     if cohort:
         filtered["cohorts"] = [c for c in data["cohorts"] if c["cohort"] == cohort]
+    monthly_keys = ("cohorts", "deliverability", "sponsorship", "engagement_metrics")
     if start_month:
-        for key in ("cohorts", "deliverability", "sponsorship"):
+        for key in monthly_keys:
             if key in filtered:
                 filtered[key] = [r for r in filtered[key] if r.get("month", "") >= start_month]
     if end_month:
-        for key in ("cohorts", "deliverability", "sponsorship"):
+        for key in monthly_keys:
             if key in filtered:
                 filtered[key] = [r for r in filtered[key] if r.get("month", "") <= end_month]
 
@@ -126,25 +127,31 @@ def filter_data(
 
 
 def export_csv_data(data: dict[str, Any]) -> dict[str, str]:
-    """Generate CSV strings for all datasets using DuckDB."""
-    conn = duckdb.connect()
-
+    """Generate CSV strings for all datasets."""
     exports: dict[str, str] = {}
     datasets = {
         "cohorts": data.get("cohorts", []),
         "deliverability": data.get("deliverability", []),
         "sponsorship": data.get("sponsorship", []),
+        "engagement_metrics": data.get("engagement_metrics", []),
+        "esp_economics": data.get("esp_economics", []),
+        "distribution_channels": data.get("distribution_channels", []),
         "referral_flows": data.get("referral_flows", []),
     }
 
     for name, records in datasets.items():
         if records:
-            df = pd.DataFrame(records)
-            conn.register("tmp_df", df)
-            exports[name] = conn.execute("SELECT * FROM tmp_df").df().to_csv(index=False)
+            exports[name] = _records_to_csv(records)
 
-    conn.close()
     return exports
+
+
+def _records_to_csv(records: list[dict[str, Any]]) -> str:
+    buffer = io.StringIO()
+    writer = csv.DictWriter(buffer, fieldnames=records[0].keys())
+    writer.writeheader()
+    writer.writerows(records)
+    return buffer.getvalue()
 
 
 async def get_dashboard_data(

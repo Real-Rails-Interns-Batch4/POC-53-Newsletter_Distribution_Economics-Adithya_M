@@ -1,68 +1,106 @@
-# POC-53: Newsletter Distribution Economics
+# POC-53 — Newsletter Distribution Economics
 
-A real-time analytics dashboard illustrating how independent newsletter rails operate outside algorithmic gatekeepers. Built with a FastAPI backend and a Next.js (TypeScript/Tailwind CSS) frontend, this project integrates public socioeconomic indices (World Bank API) with core subscriber, deliverability, and sponsorship metrics.
+Real Rails Intelligence Library demo for the **Distribution & Demand** rail. Explore subscriber cohorts, referral loops, deliverability, sponsorship revenue, and publisher-owned distribution economics.
 
----
+![Stack](https://img.shields.io/badge/Next.js-14-black) ![Stack](https://img.shields.io/badge/FastAPI-Python-green) ![Stack](https://img.shields.io/badge/Data-Synthetic%20%2B%20World%20Bank-blue)
 
-## 🚀 Getting Started
+## Quick Start
 
-### 1. Run the Backend (FastAPI)
-Navigate to the `backend` directory, set up your Python environment, install the dependencies, and launch:
-```bash
+### Prerequisites
+- Node.js 18+
+- Python 3.11+ (use `py` launcher on Windows)
+
+### 1. Backend
+
+```powershell
 cd backend
-# Activate your virtual environment
-.venv\Scripts\activate
-# Install requirements
-pip install -r requirements.txt
-# Run the application
-python run.py
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe run.py
 ```
-The backend service will be available at **`http://localhost:8000`**.
 
-### 2. Run the Frontend (Next.js)
-Navigate to the `frontend` directory, install Node dependencies, and start the development server:
-```bash
+API runs at **http://localhost:8000**
+
+### 2. Frontend
+
+```powershell
 cd frontend
+copy .env.local.example .env.local
 npm install
 npm run dev
 ```
-The frontend application will be running at **`http://localhost:3000`**.
 
----
+Dashboard at **http://localhost:3000**
 
-## 📁 Project Structure
+> If the backend is offline, the UI automatically falls back to `public/mock_data.json`.
 
-```text
-POC-53-Newsletter_Distribution_Economics/
-├── .gitignore              # Files/folders excluded from version control
-├── LICENSE                 # Project license (MIT)
-├── README.md               # Getting started guide and overview
-├── ARCHITECTURE.md         # Detailed architectural documentation
-├── backend/                # FastAPI application
-│   ├── data/               # Baseline synthetic datasets (mock_data.json)
-│   ├── services/           # Data enrichment and API services
-│   ├── main.py             # Server endpoints & routing
-│   └── run.py              # Server execution script
-└── frontend/               # Next.js web application
-    ├── src/
-    │   ├── app/            # Main layout and CSS globals
-    │   ├── components/     # Interactive dashboard blocks & charts
-    │   ├── lib/            # API queries and helper functions
-    │   └── types/          # TypeScript interface definitions
-    └── package.json        # Frontend configuration and scripts
+### Troubleshooting (dev server won't load)
+
+Stop any running dev server first, then start with a clean cache:
+
+```powershell
+cd frontend
+npm run dev:clean
 ```
 
----
+Do not run `npm run build` while `npm run dev` is active — that can corrupt the `.next` cache.
 
-## 🎨 Technology Stack
+## Features
 
-### Backend
-* **FastAPI**: High-performance Python web framework for endpoints.
-* **DuckDB & Pandas**: Data analysis, query processing, and fast CSV exportation.
-* **HTTPX**: Non-blocking asynchronous client to query public APIs.
+- **Cohort Dashboard** — subscriber growth + churn overlay (Recharts)
+- **Referral Loop Visualizer** — Sankey acquisition flows (ECharts)
+- **Deliverability Flags** — open/bounce/spam vs industry benchmarks
+- **Sponsor Revenue Model** — CPM, slots, revenue per send
+- **Neon Glass Navbar** — full-width header with live ticker + section navigation
+- **Intelligence Sidebar** — Why This Matters, Who Controls the Rail, filters, insights
+- **CSV Export** — downloadable sample data (ZIP via API, CSV fallback)
+- **World Bank Context** — live internet penetration & GDP indicators when backend runs
 
-### Frontend
-* **Next.js 14**: Modern React web framework with App Router.
-* **Tailwind CSS**: Sleek styling with custom Obsidian themes and glassmorphic micro-animations.
-* **Recharts**: Responsive chart visualizations for cohort, deliverability, and revenue metrics.
-* **Apache ECharts**: Renders interactive Sankey diagrams to map acquisition flows.
+## Screenshot
+
+![Dashboard](./Screenshots/Dashboard.png)
+
+## Project Structure
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for full system design, data flow, and component map.
+
+```
+├── backend/        # FastAPI service (stdlib JSON/CSV ETL)
+├── frontend/       # Next.js 14 dashboard
+├── Screenshots/    # Demo screenshots
+├── ARCHITECTURE.md
+└── README.md
+```
+
+## Environment Variables
+
+**Backend** (`backend/.env`):
+```
+WORLD_BANK_API_BASE=https://api.worldbank.org/v2
+MOCK_DATA_PATH=./data/mock_data.json
+```
+
+**Frontend** (`frontend/.env.local`):
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+## Data Sources
+
+| Data | Type | Label |
+|------|------|-------|
+| Newsletter metrics | Synthetic | Clearly labeled in UI |
+| World Bank indicators | Live public API | Hybrid mode when backend runs |
+
+## API Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /health` | Health check |
+| `GET /api/dashboard` | Full dashboard JSON |
+| `GET /api/export` | ZIP of CSV files |
+| `GET /api/mock` | Raw mock data |
+
+## License
+
+POC for Real Rails Interns Batch 4.

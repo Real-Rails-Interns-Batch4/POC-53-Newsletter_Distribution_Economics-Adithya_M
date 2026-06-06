@@ -98,6 +98,48 @@ export interface DashboardInsights {
   };
 }
 
+export interface EngagementRow {
+  month: string;
+  click_rate: number;
+  unsubscribe_rate: number;
+  avg_read_time_sec: number;
+  reply_rate: number;
+  industry_click_rate: number;
+}
+
+export interface EspEconomicsRow {
+  platform: string;
+  monthly_cost: number;
+  cost_per_subscriber: number;
+  revenue_share_pct: number;
+  deliverability_score: number;
+}
+
+export interface DistributionChannel {
+  channel: string;
+  share_pct: number;
+  cac: number;
+  ltv: number;
+}
+
+export interface ListHealth {
+  domain_reputation: number;
+  spf_status: string;
+  dkim_status: string;
+  dmarc_status: string;
+  warmup_complete: boolean;
+  inactive_subscribers_pct: number;
+  list_growth_rate_mom: number;
+  net_revenue_retention: number;
+}
+
+export interface RailBenchmark {
+  metric: string;
+  publisher: number;
+  platform_algo: number;
+  unit: string;
+}
+
 export interface DashboardFilters {
   cohorts: string[];
   date_range: { start: string; end: string };
@@ -112,6 +154,11 @@ export interface DashboardData {
   referral_nodes: ReferralNode[];
   deliverability: DeliverabilityRow[];
   sponsorship: SponsorshipRow[];
+  engagement_metrics: EngagementRow[];
+  esp_economics: EspEconomicsRow[];
+  distribution_channels: DistributionChannel[];
+  list_health: ListHealth;
+  rail_benchmarks: RailBenchmark[];
   world_bank_context: WorldBankRow[];
   filters: DashboardFilters;
   insights: DashboardInsights;

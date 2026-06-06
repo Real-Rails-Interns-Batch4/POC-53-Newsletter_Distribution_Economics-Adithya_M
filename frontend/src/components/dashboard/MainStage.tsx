@@ -1,13 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CohortChart } from "@/components/charts/CohortChart";
-import { ReferralChart } from "@/components/charts/ReferralChart";
 import { DeliverabilityChart } from "@/components/charts/DeliverabilityChart";
 import { SponsorshipChart } from "@/components/charts/SponsorshipChart";
 import type { DashboardData } from "@/types/dashboard";
 import { formatCurrency } from "@/lib/utils";
+
+const ReferralChart = dynamic(
+  () => import("@/components/charts/ReferralChart").then((m) => m.ReferralChart),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[320px] items-center justify-center text-sm text-muted-foreground">
+        Loading referral chart…
+      </div>
+    ),
+  }
+);
 
 interface MainStageProps {
   data: DashboardData;
@@ -21,7 +33,7 @@ export function MainStage({ data }: MainStageProps) {
   return (
     <main className="flex h-full flex-col gap-4 overflow-y-auto p-5">
       {/* KPI Strip */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div id="overview" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <KpiCard
           label="Total Subscribers"
           value={latestCohort?.subscribers.toLocaleString() ?? "—"}
@@ -46,7 +58,7 @@ export function MainStage({ data }: MainStageProps) {
       </div>
 
       {/* Cohort Dashboard */}
-      <Card>
+      <Card id="cohorts">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
@@ -65,7 +77,7 @@ export function MainStage({ data }: MainStageProps) {
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         {/* Referral Loop */}
-        <Card>
+        <Card id="referrals">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -83,7 +95,7 @@ export function MainStage({ data }: MainStageProps) {
         </Card>
 
         {/* Deliverability */}
-        <Card>
+        <Card id="deliverability">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -133,7 +145,7 @@ export function MainStage({ data }: MainStageProps) {
       </div>
 
       {/* Sponsor Revenue */}
-      <Card>
+      <Card id="revenue">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>

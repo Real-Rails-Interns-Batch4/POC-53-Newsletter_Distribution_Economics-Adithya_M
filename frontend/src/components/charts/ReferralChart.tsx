@@ -1,13 +1,27 @@
 "use client";
 
-import ReactECharts from "echarts-for-react";
+import ReactEChartsCore from "echarts-for-react/lib/core";
+import { SankeyChart } from "echarts/charts";
+import { TooltipComponent } from "echarts/components";
+import { CanvasRenderer } from "echarts/renderers";
+import * as echarts from "echarts/core";
 import type { ReferralFlow } from "@/types/dashboard";
+
+echarts.use([SankeyChart, TooltipComponent, CanvasRenderer]);
 
 interface ReferralChartProps {
   flows: ReferralFlow[];
 }
 
 export function ReferralChart({ flows }: ReferralChartProps) {
+  if (!flows.length) {
+    return (
+      <div className="flex h-[320px] items-center justify-center text-sm text-muted-foreground">
+        No referral data for selected filters
+      </div>
+    );
+  }
+
   const nodes = new Set<string>();
   flows.forEach((f) => {
     nodes.add(f.source);
@@ -51,28 +65,20 @@ export function ReferralChart({ flows }: ReferralChartProps) {
           fontSize: 11,
         },
         levels: [
-          {
-            depth: 0,
-            itemStyle: { color: "#38BDF8" },
-          },
-          {
-            depth: 1,
-            itemStyle: { color: "#818CF8" },
-          },
-          {
-            depth: 2,
-            itemStyle: { color: "#34D399" },
-          },
+          { depth: 0, itemStyle: { color: "#38BDF8" } },
+          { depth: 1, itemStyle: { color: "#818CF8" } },
+          { depth: 2, itemStyle: { color: "#34D399" } },
         ],
       },
     ],
   };
 
   return (
-    <ReactECharts
+    <ReactEChartsCore
+      echarts={echarts}
       option={option}
       style={{ height: 320, width: "100%" }}
-      opts={{ renderer: "svg" }}
+      opts={{ renderer: "canvas" }}
     />
   );
 }

@@ -2,7 +2,6 @@ import os
 from typing import Any
 
 import httpx
-import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,19 +34,24 @@ async def fetch_world_bank_indicator(
     if not records:
         return []
 
-    df = pd.DataFrame(records)
-    df = df.dropna(subset=["value"])
-    df["value"] = pd.to_numeric(df["value"], errors="coerce")
-    df = df.dropna(subset=["value"])
-
     results = []
-    for _, row in df.iterrows():
+    for row in records:
+        value = row.get("value")
+        if value is None:
+            continue
+        try:
+            numeric_value = float(value)
+        except (TypeError, ValueError):
+            continue
+
+        indicator = row.get("indicator", {})
+        country_obj = row.get("country", {})
         results.append(
             {
-                "indicator": row.get("indicator", {}).get("value", indicator_code),
-                "country": row.get("country", {}).get("value", country),
+                "indicator": indicator.get("value", indicator_code),
+                "country": country_obj.get("value", country),
                 "year": int(row["date"]) if row.get("date") else None,
-                "value": float(row["value"]),
+                "value": numeric_value,
                 "source": f"World Bank — {indicator_code}",
             }
         )
