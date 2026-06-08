@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { CohortChart } from "@/components/charts/CohortChart";
 import { DeliverabilityChart } from "@/components/charts/DeliverabilityChart";
 import { SponsorshipChart } from "@/components/charts/SponsorshipChart";
@@ -67,7 +66,6 @@ export function MainStage({ data }: MainStageProps) {
                 Subscriber growth by cohort with churn overlay — synthetic demo data
               </CardDescription>
             </div>
-            <Badge variant="outline">Recharts</Badge>
           </div>
         </CardHeader>
         <CardContent>
@@ -86,7 +84,6 @@ export function MainStage({ data }: MainStageProps) {
                   How subscribers acquire other subscribers
                 </CardDescription>
               </div>
-              <Badge variant="secondary">ECharts</Badge>
             </div>
           </CardHeader>
           <CardContent>
@@ -104,7 +101,6 @@ export function MainStage({ data }: MainStageProps) {
                   Open, bounce & spam rates vs industry benchmarks
                 </CardDescription>
               </div>
-              <Badge variant="outline">Recharts</Badge>
             </div>
           </CardHeader>
           <CardContent>
@@ -154,7 +150,6 @@ export function MainStage({ data }: MainStageProps) {
                 CPM pricing, sponsorship slots & revenue per send
               </CardDescription>
             </div>
-            <Badge variant="outline">Recharts</Badge>
           </div>
         </CardHeader>
         <CardContent>
@@ -180,7 +175,7 @@ export function MainStage({ data }: MainStageProps) {
                 >
                   <p className="text-[10px] text-muted-foreground">{row.indicator}</p>
                   <p className="mt-1 text-lg font-semibold text-cyan-accent">
-                    {row.value.toLocaleString()}
+                    {row.value.toLocaleString(undefined, { maximumFractionDigits: 1 })}
                     {row.indicator.includes("%") ? "%" : ""}
                   </p>
                   <p className="text-[10px] text-muted-foreground">
